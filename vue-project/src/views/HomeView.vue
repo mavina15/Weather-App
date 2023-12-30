@@ -17,7 +17,8 @@
 import { ref } from "vue";
 import axios from "axios";
 
-const mapboxAPIKey = "pk.eyJ1IjoibWF2aW5hMjMiLCJhIjoiY2xxcHp5Z29mNDMzMzJscXdhcDdjMnFyaSJ9.rTCs_1Jmgh_BHxoyOOJXrA";
+const mapboxAPIKey =
+	"pk.eyJ1IjoibWF2aW5hMjMiLCJhIjoiY2xxcmkzcjRmMTNhaDJpbzg0aXh5aXljMSJ9.D5hBFFWIHpSV4hqGEpA93A";
 const searchQuery = ref("");
 const queryTimeout = ref(null);
 const mapboxSearchResults = ref(null);
@@ -27,7 +28,7 @@ const getSearchResults = () => {
 	queryTimeout.value = setTimeout(async () => {
 		if (searchQuery.value !== "") {
 			const result = await axios.get(
-				'https://api.mapbox.com/geocoding/v5/mapbox.places/${searchQuery.value}.json?access_token=${mapboxAPIKey}&types=place'
+				`https://api.mapbox.com/geocoding/v5/mapbox.places/${searchQuery.value}.json?access_token=${mapboxAPIKey}&types=place`
 			);
 			mapboxSearchResults.value = result.data.features;
 			console.log(mapboxSearchResults.value);
@@ -37,5 +38,3 @@ const getSearchResults = () => {
 	}, 300);
 };
 </script>
-
-<style lang="scss" scoped></style>
